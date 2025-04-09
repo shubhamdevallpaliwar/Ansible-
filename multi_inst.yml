@@ -1,0 +1,19 @@
+---
+
+- hosts: dev
+  connection: ssh
+
+  vars: 
+   abc: git
+   xyz: maven
+
+  tasks:
+    - name: Installation of git
+      yum: name={{abc}} state=present
+
+    - name: Java
+      yum: name={{xyz}} state=present
+
+    
+...
+

@@ -1,0 +1,17 @@
+---
+
+- hosts: dev
+  connection: ssh
+
+
+  tasks:
+
+    - name: Multiple users creation 
+      user: name={{item}} state=present
+      with_items: 
+           - rohit
+           - robi
+           - akhil
+           - shwetha
+
+    

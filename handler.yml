@@ -1,0 +1,13 @@
+---
+- hosts: test
+  connection: ssh
+  tasks:
+    - name: null
+      yum: name=httpd state=present
+      notify: restart httpd
+
+
+  handlers:
+     - name: restart httpd
+       service: name=httpd state=started
+

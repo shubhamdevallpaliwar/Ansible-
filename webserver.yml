@@ -1,0 +1,17 @@
+---
+- hosts: dev
+  connection: ssh
+  tasks:
+    - name: Webservers
+      yum: name=httpd state=present
+    - name: Starting webserver
+      service: name=httpd state=started
+    - name: creating file
+      file:
+        path: var/www/html/index.html
+        state: touch
+    - name: Adding content top file
+      copy:
+        dest: var/www/html/index.html
+        content: |
+          <h1> Welcome to webserver </h1>

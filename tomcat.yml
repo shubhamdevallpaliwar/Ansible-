@@ -1,0 +1,39 @@
+---
+
+- hosts: dev
+  connection: ssh
+
+
+  tasks:
+
+    - name: installing java
+      yum: 
+        name: java-1.8.0-openjdk
+        state: present
+
+    - name: installing tomcat
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.102/bin/apache-tomcat-9.0.102.tar.gz
+        dest: "/root"
+
+    - name: unzip the tar file 
+      command: tar -zxvf apache-tomcat-9.0.102.tar.gz
+
+
+    - name: allow permisiion
+      copy:
+        src: "context.xml"
+        dest: "/root/apache-tomcat-9.0.102/webapps/manager/META-INF/context.xml"
+
+    - name: setting up the crenditional 
+      copy: 
+        src: "tomcat-users.xml"
+        dest: "/root/apache-tomcat-9.0.102/conf/tomcat-users.xml"
+
+    - name: start script
+      shell: nohup /root/apache-tomcat-9.0.102/bin/startup.sh
+
+
+
+
+

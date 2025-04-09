@@ -1,0 +1,17 @@
+---
+- hosts: test
+  connection: ssh
+
+  tasks:
+    - name: Install Git
+      yum:
+        name: git
+        state: present
+      tags: install
+
+    - name: Uninstall Git
+      yum:
+        name: git
+        state: absent
+      tags: uninstall
+

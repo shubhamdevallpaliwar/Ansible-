@@ -1,0 +1,18 @@
+---
+
+- hosts: dev
+  connection: ssh 
+
+
+  tasks:
+
+    - name : creating file 
+      file:
+        path: "flm.devops"
+        state: touch 
+
+      file:
+        path: "/devops"
+        state: directory
+
+

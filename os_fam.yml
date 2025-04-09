@@ -1,0 +1,16 @@
+---
+- hosts: test
+  connection: ssh
+  tasks:
+    - name: Install Apache on Red Hat family
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Install Apache on Ubuntu family
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+

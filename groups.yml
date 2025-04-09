@@ -1,0 +1,11 @@
+---
+- hosts: dev
+  connection: ssh
+  tasks:
+    - name: creating groups
+      group: name={{item}} state=present
+      with_items:
+        - devops
+        - k8s
+        - security
+        - inc
